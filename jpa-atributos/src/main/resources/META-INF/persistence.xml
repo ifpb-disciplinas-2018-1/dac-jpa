@@ -7,13 +7,14 @@
     <class>br.edu.ifpb.domain.Contato</class>
     <class>br.edu.ifpb.domain.Aluno</class>
     <class>br.edu.ifpb.domain.Perfil</class>
-    <class>br.edu.ifpb.domain.Endereco</class>
+    <class>br.edu.ifpb.domain.chaves.Telefone</class>
+    <class>br.edu.ifpb.infra.jpa.LocalDateConverter</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa-20181"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="12345"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
   <persistence-unit name="ExemploPU2" transaction-type="RESOURCE_LOCAL">
@@ -21,7 +22,6 @@
     <class>br.edu.ifpb.domain.Contato</class>
     <class>br.edu.ifpb.domain.Aluno</class>
     <class>br.edu.ifpb.domain.Perfil</class>
-    <class>br.edu.ifpb.domain.Endereco</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/consultas"/>
       <property name="javax.persistence.jdbc.user" value="consultas"/>

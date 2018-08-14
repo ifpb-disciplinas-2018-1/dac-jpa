@@ -1,8 +1,14 @@
 package br.edu.ifpb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.AttributeOverride;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,18 +34,38 @@ public class Professor implements Serializable {
 //    @Enumerated(EnumType.ORDINAL)
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
-    
+
     @Transient
     private int idade;
 //    private transient int idade;
 
+    @Embedded
+    @AttributeOverride(
+            name = "numero",
+            column = @Column(
+                    name = "cpf_prof",
+                    length = 11
+            )
+    )
+    private CPF cpf;
+
+    @ElementCollection
+    @CollectionTable(name = "Telefones")
+    private List<String> telefones = new ArrayList<>();
+
     public Professor() {
     }
 
-    public Professor(double salario, String matricula, Sexo sexo) {
+    public Professor(double salario, String matricula,
+            Sexo sexo, String cpf) {
         this.salario = salario;
         this.matricula = matricula;
         this.sexo = sexo;
+        this.cpf = new CPF(cpf);
+    }
+
+    public void adicionarTelefone(String telefone) {
+        this.telefones.add(telefone);
     }
 
     public int getCodigo() {
@@ -64,6 +90,14 @@ public class Professor implements Serializable {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public CPF getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(CPF cpf) {
+        this.cpf = cpf;
     }
 
     @Override
@@ -114,8 +148,14 @@ public class Professor implements Serializable {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
+
+    public List<String> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<String> telefones) {
+        this.telefones = telefones;
+    }
 
 }
-
-
+ 

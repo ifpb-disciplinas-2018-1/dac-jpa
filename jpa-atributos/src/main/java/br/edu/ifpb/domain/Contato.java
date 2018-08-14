@@ -23,7 +23,7 @@ public class Contato implements Serializable {
     @Column(length = 255)
     private String email;
     private int idade;
-
+    
     public Contato() {
     }
 

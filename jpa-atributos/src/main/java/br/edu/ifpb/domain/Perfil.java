@@ -1,6 +1,8 @@
 package br.edu.ifpb.domain;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Ricardo Job
@@ -39,11 +43,16 @@ public class Perfil implements Serializable {
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private String descricao; //CLOB
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date criadoEm;
 
     public Perfil() {
+        this.criadoEm = new Date();
     }
 
     public Perfil(String profile, byte[] foto) {
+        this();
         this.profile = profile;
         this.foto = foto;
     }

@@ -26,6 +26,8 @@ public class Tecnico implements Serializable {
     @Column(length = 11, nullable = false)
     private String cpf;
 
+    
+    
     public Tecnico(String nome, String sigepe, String cpf) {
         this.nome = nome;
         this.sigepe = sigepe;

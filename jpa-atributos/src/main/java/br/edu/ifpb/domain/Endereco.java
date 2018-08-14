@@ -2,18 +2,16 @@ package br.edu.ifpb.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
  * @since 30/07/2018, 08:04:34
  */
-@Entity
-public class Endereco implements Serializable{
+@Embeddable
+public class Endereco implements Serializable {
 
-    @Id
     private String rua;
     private String bairro;
     private String cidade;
@@ -83,5 +81,5 @@ public class Endereco implements Serializable{
         }
         return true;
     }
-    
+
 }

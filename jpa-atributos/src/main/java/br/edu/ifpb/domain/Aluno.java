@@ -1,13 +1,20 @@
 package br.edu.ifpb.domain;
 
+import br.edu.ifpb.infra.jpa.LocalDateConverter;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Ricardo Job
@@ -21,19 +28,26 @@ import javax.persistence.SequenceGenerator;
         initialValue = 2,
         sequenceName = "minha_seq"
 )
-public class Aluno implements Serializable{
+public class Aluno implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "seq_name",strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "seq_name", strategy = GenerationType.SEQUENCE)
     private int id;
     @Column(length = 80)
     private String nome;
     private double cre;
+    @Embedded
+    private Endereco endereco;
+
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate dataDeNascimento;
 
     public Aluno() {
+        this.dataDeNascimento = LocalDate.now();
     }
 
     public Aluno(String nome, double cre) {
+        this();
         this.nome = nome;
         this.cre = cre;
     }
@@ -60,6 +74,14 @@ public class Aluno implements Serializable{
 
     public void setCre(double cre) {
         this.cre = cre;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override
@@ -94,7 +116,5 @@ public class Aluno implements Serializable{
         }
         return true;
     }
-    
-    
-    
+
 }

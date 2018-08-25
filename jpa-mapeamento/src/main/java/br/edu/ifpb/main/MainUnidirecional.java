@@ -46,8 +46,8 @@ public class MainUnidirecional {
         madruga.novoDependente(kiko);
         madruga.setDepartamento(departamento);
 
-        madruga.novoProjeto(pdm);
-        madruga.novoProjeto(dac);
+//        madruga.novoProjeto(pdm);
+//        madruga.novoProjeto(dac);
         /*
             During synchronization a new object was 
             found through a relationship that was 

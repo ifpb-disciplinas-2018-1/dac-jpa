@@ -9,6 +9,7 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -20,6 +21,7 @@ import javax.persistence.TemporalType;
  * @since 13/08/2018, 07:33:09
  */
 @Entity
+//@NamedQuery(name = "gerente.id",query = "SELECT g FROM Gerente g WHERE g.id=")
 public class Gerente implements Serializable {
 
     @Id

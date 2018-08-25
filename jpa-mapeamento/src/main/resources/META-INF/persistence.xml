@@ -12,6 +12,7 @@
     <class>br.edu.ifpb.domain.hotel.Hospede</class>
     <class>br.edu.ifpb.domain.hotel.Hotel</class>
     <class>br.edu.ifpb.domain.hotel.Reserva</class>
+    <class>br.edu.ifpb.domain.Trabalho</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa-20181"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

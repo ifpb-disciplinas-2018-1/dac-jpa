@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * @author Ricardo Job
@@ -27,9 +28,10 @@ public class Projeto implements Serializable {
     private Gerente gerente; // N -> 1 - bidirecional
 
     //MUITOS Projetos são compostos por MUITOS Funcionarios
-    @ManyToMany
-    private List<Funcionario> funcionarios; // N -> N
-    
+    //@ManyToMany
+    //private List<Funcionario> funcionarios; // N -> N
+    @OneToMany(mappedBy = "projeto")
+    private List<Trabalho> funcionarios;
     public Projeto() {
         this.funcionarios = new ArrayList<>();
     }
@@ -39,7 +41,7 @@ public class Projeto implements Serializable {
         this.descricao = descricao;
     }
 
-    public void addFuncionario(Funcionario funcionario){
+    public void addFuncionario(Trabalho funcionario){
         this.funcionarios.add(funcionario);
     }
     public int getId() {

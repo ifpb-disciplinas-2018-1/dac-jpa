@@ -42,8 +42,10 @@ public class Funcionario implements Serializable {
     private Departamento departamento; // N -> 1 - unidirecional
 
     // MUITOS Funcionarios trabalham em MUITOS Projetos
-    @ManyToMany(mappedBy = "funcionarios")
-    private List<Projeto> projetos; // N -> N - bidirecional
+//    @ManyToMany(mappedBy = "funcionarios")
+//    private List<Projeto> projetos; // N -> N - bidirecional
+    @OneToMany(mappedBy = "funcionario")
+    private List<Trabalho> projetos;
 
     public Funcionario() {
         this.dependentes = new ArrayList<>();
@@ -61,9 +63,9 @@ public class Funcionario implements Serializable {
         this.dependentes.add(dependente);
     }
 
-    public void novoProjeto(Projeto projeto) {
+    public void novoProjeto(Trabalho projeto) {
         this.projetos.add(projeto);
-        projeto.addFuncionario(this);
+//        projeto.addFuncionario(this);
     }
 
     public String getNome() {

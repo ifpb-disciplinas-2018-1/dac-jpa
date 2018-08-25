@@ -1,7 +1,6 @@
 package br.edu.ifpb.main;
 
 import br.edu.ifpb.domain.Departamento;
-import br.edu.ifpb.domain.Dependente;
 import br.edu.ifpb.domain.Endereco;
 import br.edu.ifpb.domain.Funcionario;
 import br.edu.ifpb.domain.Gerente;
@@ -30,7 +29,7 @@ public class MainBidirecional {
                 "Job", "123",
                 LocalDate.of(2015, 10, 28),
                 LocalDate.of(2018, 12, 28),
-                departamento 
+                departamento
         );
 
         departamento.setGerente(gerente);
@@ -50,11 +49,11 @@ public class MainBidirecional {
         Funcionario job = new Funcionario(
                 "Job", "123", endereco
         );
-        
+
         // Atribuição diretamente no método
-        job.novoProjeto(pos);
-        job.novoProjeto(dac);
-        
+//        job.novoProjeto(pos);
+//        job.novoProjeto(dac);
+
         manager.getTransaction().begin();
         manager.persist(endereco);
         manager.persist(job);
@@ -63,6 +62,22 @@ public class MainBidirecional {
         manager.persist(gerente);
         manager.persist(departamento);
         manager.getTransaction().commit();
+
+//        manager.detach(gerente);
+        manager.clear();
+        // segunda transação
+//        manager.getTransaction().begin();
+//        gerente.setNome("Kiko");
+//        manager.getTransaction().commit();
+//        Gerente find = manager.find(Gerente.class, gerente.getId());
+        Gerente find = manager
+                .createQuery("SELECT g FROM Gerente g WHERE g.id=" + gerente.getId(),
+                        Gerente.class)
+                .getSingleResult();
+        manager.getTransaction().begin();
+        find.setNome("Kiko");
+        manager.getTransaction().commit();
+//manager.createNamedQuery("gerente.id");
 //        Departamento find = manager.find(Departamento.class, 2);
 //        System.out.println(
 //                "Departamento: " + find.getAbreviacao()
@@ -70,6 +85,5 @@ public class MainBidirecional {
 //        System.out.println(
 //                "Gerente: " + find.getGerente().getNome()
 //        );
-
     }
 }

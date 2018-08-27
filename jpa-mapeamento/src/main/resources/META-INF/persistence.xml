@@ -13,13 +13,24 @@
     <class>br.edu.ifpb.domain.hotel.Hotel</class>
     <class>br.edu.ifpb.domain.hotel.Reserva</class>
     <class>br.edu.ifpb.domain.Trabalho</class>
+    <class>br.edu.ifpb.domain.single.Animal</class>
+    <class>br.edu.ifpb.domain.single.Cachorro</class>
+    <class>br.edu.ifpb.domain.single.Gato</class>
+    <class>br.edu.ifpb.domain.table.Carro</class>
+    <class>br.edu.ifpb.domain.table.Celta</class>
+    <class>br.edu.ifpb.domain.table.Fusca</class>
+    <class>br.edu.ifpb.domain.joinned.Aluno</class>
+    <class>br.edu.ifpb.domain.joinned.Pessoa</class>
+    <class>br.edu.ifpb.domain.joinned.Professor</class>
+    <class>br.edu.ifpb.domain.mapped.Analista</class>
+    <class>br.edu.ifpb.domain.mapped.TAE</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa-20181"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="12345"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <!--<property name="eclipselink.logging.level" value="FINE"/>-->
     </properties>
   </persistence-unit>
 </persistence>

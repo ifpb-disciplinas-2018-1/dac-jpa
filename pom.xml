@@ -10,8 +10,9 @@
     <modules>
         <module>jpa-atributos</module>
         <module>jpa-mapeamento</module>
-    <module>dac-contexto</module>
-  </modules>
+        <module>dac-contexto</module>
+        <module>jpa-consultas</module>
+    </modules>
     <dependencies> 
         <dependency>
             <groupId>org.eclipse.persistence</groupId>

@@ -1,4 +1,4 @@
-package br.edu.ifpb.main;
+package br.edu.ifpb.main ;
 
 import br.edu.ifpb.domain.Departamento;
 import br.edu.ifpb.domain.DepartamentoGerente;

@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
  * @mail ricardo.job@ifpb.edu.br
  * @since 29/08/2018, 22:51:20
  */
-public class MainConsultas {
+public class MainConsultasJPQL {
 
     public static void main(String[] args) {
         EntityManager em = Persistence
@@ -45,13 +45,13 @@ public class MainConsultas {
 //        consultarNomeDoFuncionarioEQuantidadeDependentes(em);
 //        consultarDependenteComIdSuperiorAMedia(em);
 //        consultarDependenteSeTodosIdSuperiorADez(em);
-        consultarDependenteSeQualquerIdSuperiorADez(em);
-//        atualizarNomeTodosDependentes
-//        removerDependenteComId
-//        consultarTodosOsDependentesNamedQuery
-//        consultarOsDependentesComIdNamedQuery
-//        consultarTodosOsFuncionariosNativeQuery
-//        consultarNomeIdFuncionariosNativeQuery
+//        consultarDependenteSeQualquerIdSuperiorADez(em);
+        atualizarNomeTodosDependentes(em);
+//        removerDependenteComId(em);
+//        consultarTodosOsDependentesNamedQuery(em);
+//        consultarOsDependentesComIdNamedQuery(em);
+//        consultarTodosOsFuncionariosNativeQuery(em);
+//        consultarNomeIdFuncionariosNativeQuery(em);
     }
 
     private static void consultarTodosOsFuncionarios(EntityManager em) {
@@ -301,6 +301,53 @@ public class MainConsultas {
         List<Dependente> resultList = em.createQuery(jpql, Dependente.class)
                 .getResultList();
         resultList.forEach(d -> System.out.println(d.getNome()));
+    }
+
+    private static void atualizarNomeTodosDependentes(EntityManager em) {
+        String jpql = "UPDATE Dependente d SET d.nome = CONCAT(d.nome,'s') WHERE d.codigo = 202";
+        em.getTransaction().begin();
+        int resposta = em.createQuery(jpql).executeUpdate();
+        em.getTransaction().commit();
+        System.out.println("resposta = " + resposta);
+    }
+
+    private static void removerDependenteComId(EntityManager em) {
+//        String jpql = "DELETE FROM Funcionario WHERE id = 1";
+        String jpql = "DELETE FROM Dependente WHERE codigo = 201";
+        em.getTransaction().begin();
+        int resposta = em.createQuery(jpql).executeUpdate();
+        em.getTransaction().commit();
+        System.out.println("resposta = " + resposta);
+    }
+
+    private static void consultarTodosOsDependentesNamedQuery(EntityManager em) {
+        String jpql = "Dependente.todos";
+        List<Dependente> resultList = em.createNamedQuery(jpql, Dependente.class)
+                .getResultList();
+        resultList.forEach(d -> System.out.println(d.getNome()));
+    }
+
+    private static void consultarOsDependentesComIdNamedQuery(EntityManager em) {
+        String jpql = "Dependente.id";
+        List<Dependente> resultList = em.createNamedQuery(jpql, Dependente.class)
+                .setParameter("id", 1)
+                .getResultList();
+        resultList.forEach(d -> System.out.println(d.getNome()));
+    }
+
+    private static void consultarTodosOsFuncionariosNativeQuery(EntityManager em) {
+        String jpql = "SELECT * FROM Funcionario";
+         List<Funcionario> resultList = em.createNativeQuery(jpql, Funcionario.class)
+                .getResultList();
+        resultList.forEach(d -> System.out.println(d.getNome()));
+    }
+
+    private static void consultarNomeIdFuncionariosNativeQuery(EntityManager em) {
+       String jpql = "SELECT nome, id FROM Funcionario WHERE id=?";
+        List<Object[]> resultList = em.createNativeQuery(jpql)
+                .setParameter(1, 1)
+                .getResultList();
+        resultList.forEach(d -> System.out.println(Arrays.toString(d)));
     }
 
 }
